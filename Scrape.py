@@ -6,6 +6,7 @@ import time
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from lxml import etree
 
 cred = credentials.Certificate(
     "event-hotspot-firebase-adminsdk-7w7p3-1dd2809173.json")
