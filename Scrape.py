@@ -65,9 +65,10 @@ def getEleInfo():
                 u'time': event_time.text,
                 u'elePoint': float(event_point.text)
             })
-            doc_ref.delete()
+            db.close()
 
         print('')
     num = 2
 
 
+getEleInfo()
