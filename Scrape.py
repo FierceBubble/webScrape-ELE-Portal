@@ -1,4 +1,5 @@
 from http.cookiejar import CookieJar
+from secrets import choice
 from bs4 import BeautifulSoup
 import requests
 import mechanize
@@ -7,6 +8,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from lxml import etree
+import random
 
 cred = credentials.Certificate(
     "event-hotspot-firebase-adminsdk-7w7p3-1dd2809173.json")
@@ -37,7 +39,9 @@ def getEleInfo():
     soup = BeautifulSoup(html_text, 'lxml')
     event_all = soup.find_all('table', class_='style62')
     num = 2
-    total_event = 0
+    
+    eventLocation = ['A','B','C','G']
+    
     for event in event_all:
         if num <= 6:
             for event_title in event.find_all('span', {'id': 'ctl00_ContentPlaceHolder1_grvEventList_ctl0' + str(num) + '_Label1'}):
@@ -63,7 +67,8 @@ def getEleInfo():
                 u'email': event_email.text,
                 u'date': event_date.text,
                 u'time': event_time.text,
-                u'elePoint': float(event_point.text)
+                u'elePoint': float(event_point.text),
+                u'location': random.choice(eventLocation)
             })
             db.close()
 
