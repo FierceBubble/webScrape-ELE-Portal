@@ -71,4 +71,3 @@ def getEleInfo():
     num = 2
 
 
-getEleInfo()
