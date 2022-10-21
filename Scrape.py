@@ -36,6 +36,7 @@ def getEleInfo():
     soup = BeautifulSoup(html_text, 'lxml')
     event_all = soup.find_all('table', class_='style62')
     num = 2
+    total_event = 0
     for event in event_all:
         if num <= 6:
             for event_title in event.find_all('span', {'id': 'ctl00_ContentPlaceHolder1_grvEventList_ctl0' + str(num) + '_Label1'}):
@@ -63,13 +64,9 @@ def getEleInfo():
                 u'time': event_time.text,
                 u'elePoint': float(event_point.text)
             })
+            doc_ref.delete()
+
         print('')
     num = 2
 
 
-if __name__ == '__main__':
-    getEleInfo()
-    """while True:
-        time_wait = 10
-        print(f'Waiting {time_wait} seconds...')
-        time.sleep(time_wait)"""
