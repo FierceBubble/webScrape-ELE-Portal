@@ -62,6 +62,7 @@ def getEleInfo():
             doc_ref = db.collection(u'eventList').document(
                 event_title.text)
             doc_ref.set({
+                u'title': event_title.text,
                 u'organizer': event_organization.text,
                 u'pic': event_pic.text,
                 u'email': event_email.text,
